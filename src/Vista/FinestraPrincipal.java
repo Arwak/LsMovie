@@ -37,7 +37,7 @@ public class FinestraPrincipal extends JFrame{
         jpContingut = new JPanel(new GridBagLayout());
 
         jpContingut.setAlignmentX(Component.CENTER_ALIGNMENT);
-        jpContingut.add(new PanelCercador());
+        jpContingut.add(new FinestraLogin(HEADER_COLOR,FONT_COLOR));
 
         this.add(jpContingut, BorderLayout.CENTER);
 
@@ -79,6 +79,7 @@ public class FinestraPrincipal extends JFrame{
         jPanel.setBackground(HEADER_COLOR);
         return jPanel;
     }
+
 
 
 }

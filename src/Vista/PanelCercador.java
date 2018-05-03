@@ -1,6 +1,7 @@
 package Vista;
 
 import javax.swing.*;
+import javax.swing.border.BevelBorder;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
@@ -21,7 +22,6 @@ public class PanelCercador extends JPanel {
     private JTextField jtfDirector;
     private JTextField jtfCountry;
     private JButton jbSearch;
-    private JTextArea jtaResultat;
     private JTable jtResultats;
     private DefaultTableModel dtmResultats;
 
@@ -66,16 +66,18 @@ public class PanelCercador extends JPanel {
 
         JPanel jpSouth = new JPanel();
         jpSouth.setLayout(new BoxLayout(jpSouth, BoxLayout.Y_AXIS));
-        JLabel jlTitle = new JLabel("Results");
-        jlTitle.setFont(new Font("Serif", Font.PLAIN, 20));
-        jpSouth.add(jlTitle);
+
         JPanel jpTable = new JPanel(new BorderLayout());
         jpTable.add(jtResultats.getTableHeader(), BorderLayout.NORTH);
         jpTable.add(jtResultats, BorderLayout.CENTER);
 
         jpSouth.add(jpTable);
 
+
+
         jpMain.add(jpCenter, BorderLayout.EAST);
+
+        jpSouth.setBorder(BorderFactory.createTitledBorder("Results"));
 
         jpMain.add(jpSouth, BorderLayout.SOUTH);
 
@@ -86,7 +88,35 @@ public class PanelCercador extends JPanel {
     }
 
 
+    public String getJtfMovTitle () {
+        return jtfMovTitle.getText();
+    }
 
+    public String getJtfGenre () {
+        return jtfGenre.getText();
+    }
 
+    public String getJtfActor () {
+        return jtfActor.getText();
+    }
 
+    public String getJtfDirector () {
+        return jtfDirector.getText();
+    }
+
+    public String getJtfCountry () {
+        return jtfCountry.getText();
+    }
+
+    public void clearFields () {
+        jtfActor.setText("");
+        jtfCountry.setText("");
+        jtfDirector.setText("");
+        jtfGenre.setText("");
+        jtfMovTitle.setText("");
+    }
+
+    public void addResultsRow (String [] row) {
+        dtmResultats.addRow(row);
+    }
 }
