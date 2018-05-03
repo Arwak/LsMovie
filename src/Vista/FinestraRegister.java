@@ -16,14 +16,14 @@ import java.awt.*;
  * </p>
  *
  * @version 1.0
- * @author  Clàudia Peiró - cpeiro@salleurl.edu
+ * @author  Clàudia Peiró - cpeiro@salleurl.edu <br/>
  * 			Xavier Roma - xroma@salleurl.edu <br/>
  * 			Arxius i Bases de Dades <br/>
  * 			La Salle - Universitat Ramon Llull. <br/>
  * 			<a href="http://www.salle.url.edu" target="_blank">www.salle.url.edu</a>
  *
  */
-public class FinestraRegister extends JFrame {
+public class FinestraRegister extends JPanel {
 
 	public final static String NEW_REG = "3";
 	public final static String BACK_REG = "4";
@@ -86,14 +86,7 @@ public class FinestraRegister extends JFrame {
 		jpMain.add(jpDown);
 
 
-		
-		this.getContentPane().add(jpMain, BorderLayout.CENTER);
-		
-		this.setSize(350, 300);
-		this.setResizable(false);
-		this.setTitle("LsMovie - El buscador definitiu");
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setLocationRelativeTo(null);
+
 	}
 	
 	public void registreControladorBotons(ListenerBotons controladorBotons) {

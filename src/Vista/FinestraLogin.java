@@ -21,14 +21,14 @@ import com.sun.org.apache.regexp.internal.RE;
  * </p>
  *
  * @version 1.0
- * @author  Clàudia Peiró - cpeiro@salleurl.edu
+ * @author  Clàudia Peiró - cpeiro@salleurl.edu <br/>
  * 			Xavier Roma - xroma@salleurl.edu <br/>
  * 			Arxius i Bases de Dades <br/>
  * 			La Salle - Universitat Ramon Llull. <br/>
  * 			<a href="http://www.salle.url.edu" target="_blank">www.salle.url.edu</a>
  *
  */
-public class FinestraLogin extends JFrame {
+public class FinestraLogin extends JPanel {
 
 	public final static String REGISTRAR = "1";
 	public final static String LOGIN = "2";
@@ -36,48 +36,42 @@ public class FinestraLogin extends JFrame {
 	private JPanel jpMain;
 
 	private JButton jbLogin;
-	private JButton jbRegister;
 	private JLabel jlUsername;
 	private JTextField jtfUsername;
 	private JLabel jlPass;
 	private JPasswordField jpfPass;
 	
-	public FinestraLogin () {
+	public FinestraLogin (Color background, Color font) {
+
 		jpMain = new JPanel();
+		jpMain.setBackground(background);
 		jpMain.setLayout(new GridLayout(3,3));
-		
+
 		jbLogin = new JButton("Entrar");
-		jbRegister = new JButton("Registrar");
 
 
 		jlUsername = new JLabel("Usuari: ");
+		jlUsername.setForeground(font);
 		jtfUsername = new JTextField();
 		jtfUsername.setPreferredSize(new Dimension(224,25));
 		jpMain.add(jlUsername);
 		jpMain.add(jtfUsername);
 
 		jlPass = new JLabel("Contrassenya: ");
+		jlPass.setForeground(font);
 		jpfPass = new JPasswordField();
 		jpfPass.setPreferredSize(new Dimension(224,25));
 		jpMain.add(jlPass);
 		jpMain.add(jpfPass);
-
 		jpMain.add(jbLogin);
-		jpMain.add(jbRegister);
 
-		
-		this.getContentPane().add(jpMain, BorderLayout.CENTER);
-		
-		this.setSize(350, 300);
-		this.setResizable(false);
-		this.setTitle("LsMovie - El buscador definitiu");
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setLocationRelativeTo(null);
+
+		this.add(jpMain);
+
 	}
 	
 	public void registreControladorBotons(ListenerBotons controladorBotons) {
-		jbRegister.addActionListener(controladorBotons);
-		jbRegister.setActionCommand(REGISTRAR);
+
 		jbLogin.addActionListener(controladorBotons);
 		jbLogin.setActionCommand(LOGIN);
 	}
