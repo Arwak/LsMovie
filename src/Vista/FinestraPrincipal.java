@@ -37,7 +37,7 @@ public class FinestraPrincipal extends JFrame{
         jpContingut = new JPanel(new GridBagLayout());
 
         jpContingut.setAlignmentX(Component.CENTER_ALIGNMENT);
-        jpContingut.add(new FinestraLogin(HEADER_COLOR,FONT_COLOR));
+        jpContingut.add(new FinestraLogin());
 
         this.add(jpContingut, BorderLayout.CENTER);
 

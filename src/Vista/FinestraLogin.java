@@ -1,10 +1,6 @@
 package Vista;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
+import java.awt.*;
 import javax.swing.*;
 
 import Controlador.ListenerBotons;
@@ -41,28 +37,26 @@ public class FinestraLogin extends JPanel {
 	private JLabel jlPass;
 	private JPasswordField jpfPass;
 	
-	public FinestraLogin (Color background, Color font) {
+	public FinestraLogin () {
 
 		jpMain = new JPanel();
-		jpMain.setBackground(background);
 		jpMain.setLayout(new GridLayout(3,3));
 
 		jbLogin = new JButton("Entrar");
-
+		jbLogin.setPreferredSize(new Dimension(25,25));
 
 		jlUsername = new JLabel("Usuari: ");
-		jlUsername.setForeground(font);
 		jtfUsername = new JTextField();
-		jtfUsername.setPreferredSize(new Dimension(224,25));
+		jtfUsername.setPreferredSize(new Dimension(124,25));
 		jpMain.add(jlUsername);
 		jpMain.add(jtfUsername);
 
 		jlPass = new JLabel("Contrassenya: ");
-		jlPass.setForeground(font);
 		jpfPass = new JPasswordField();
-		jpfPass.setPreferredSize(new Dimension(224,25));
+		jpfPass.setPreferredSize(new Dimension(124,25));
 		jpMain.add(jlPass);
 		jpMain.add(jpfPass);
+		jpMain.add(new Panel());
 		jpMain.add(jbLogin);
 
 
