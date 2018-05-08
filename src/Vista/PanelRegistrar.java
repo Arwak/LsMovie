@@ -1,10 +1,9 @@
 package Vista;
 
-import java.awt.*;
-import javax.swing.*;
-
 import Controlador.ListenerBotons;
-import com.sun.org.apache.regexp.internal.RE;
+
+import javax.swing.*;
+import java.awt.*;
 
 /**
  * 
@@ -24,29 +23,24 @@ import com.sun.org.apache.regexp.internal.RE;
  * 			<a href="http://www.salle.url.edu" target="_blank">www.salle.url.edu</a>
  *
  */
-public class PanelLogin extends JPanel {
+public class PanelRegistrar extends JPanel {
 
-	public final static String LOGIN = "0";
-	public final static String NEW_USER = "4";
-
+	public final static String REGISTER = "3";
 
 	private JPanel jpMain;
 
 	private JButton jbLogin;
-	private JButton jbRegister;
 	private JLabel jlUsername;
 	private JTextField jtfUsername;
 	private JLabel jlPass;
 	private JPasswordField jpfPass;
-	
-	public PanelLogin () {
+
+	public PanelRegistrar () {
 
 		jpMain = new JPanel();
 		jpMain.setLayout(new GridLayout(3,3));
 
-		jbRegister = new JButton("No tinc compte");
-
-		jbLogin = new JButton("Entrar");
+		jbLogin = new JButton("Registrar");
 		jbLogin.setPreferredSize(new Dimension(25,25));
 
 		jlUsername = new JLabel("Usuari: ");
@@ -60,10 +54,8 @@ public class PanelLogin extends JPanel {
 		jpfPass.setPreferredSize(new Dimension(124,25));
 		jpMain.add(jlPass);
 		jpMain.add(jpfPass);
-		jpMain.add(jbRegister);
+		jpMain.add(new Panel());
 		jpMain.add(jbLogin);
-
-
 
 
 		this.add(jpMain);
@@ -73,16 +65,14 @@ public class PanelLogin extends JPanel {
 	public void registreControladorBotons(ListenerBotons controladorBotons) {
 
 		jbLogin.addActionListener(controladorBotons);
-		jbLogin.setActionCommand(LOGIN);
-		jbRegister.addActionListener(controladorBotons);
-		jbRegister.setActionCommand(NEW_USER);
+		jbLogin.setActionCommand(REGISTER);
 	}
 	
-	public String getLogin() {
+	public String getNewLogin() {
 		return jtfUsername.getText();
 	}
 
-	public String getPassword() {
+	public String getNewPassword() {
 		return new String(jpfPass.getPassword());
 	}
 	

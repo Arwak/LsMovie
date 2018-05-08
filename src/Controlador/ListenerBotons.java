@@ -15,6 +15,8 @@ import javax.imageio.ImageIO;
 
 import static Vista.PanelCercador.SEARCH;
 import static Vista.PanelLogin.LOGIN;
+import static Vista.PanelLogin.NEW_USER;
+import static Vista.PanelRegistrar.REGISTER;
 
 /**
  *
@@ -55,6 +57,16 @@ public class ListenerBotons implements ActionListener {
 
 			case SEARCH:
 
+				break;
+
+			case NEW_USER:
+
+				finestraPrincipal.swapToRegisterPanel();
+				break;
+
+			case REGISTER:
+
+				finestraPrincipal.swapToLoginPanel();
 				break;
 
 		}

@@ -29,6 +29,7 @@ import java.io.IOException;
 public class FinestraPrincipal extends JFrame{
 
     private PanelLogin login;
+    private PanelRegistrar register;
     private PanelCercador cercador;
 
     private static final Color HEADER_COLOR = new Color(25, 23, 24);
@@ -40,7 +41,7 @@ public class FinestraPrincipal extends JFrame{
     public FinestraPrincipal(){
         setSize(600,600);
         setLocationRelativeTo(null);
-        setTitle("InfoPelicules");
+        setTitle("LSMovie");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setLayout(new BorderLayout());
 
@@ -49,6 +50,7 @@ public class FinestraPrincipal extends JFrame{
 
         login = new PanelLogin();
         cercador = new PanelCercador();
+        register = new PanelRegistrar();
         jpContingut = new JPanel(new GridBagLayout());
 
         jpContingut.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -100,12 +102,29 @@ public class FinestraPrincipal extends JFrame{
 
         login.registreControladorBotons(controladorBotons);
         cercador.registreControladorBotons(controladorBotons);
+        register.registreControladorBotons(controladorBotons);
     }
 
 
     public void swapToSearchPanel () {
         login.setVisible(false);
+        register.setVisible(false);
+        cercador.setVisible(true);
         jpContingut.add(cercador);
+    }
+
+    public void swapToRegisterPanel () {
+        login.setVisible(false);
+        register.setVisible(true);
+        cercador.setVisible(false);
+        jpContingut.add(register);
+    }
+
+    public void swapToLoginPanel () {
+        login.setVisible(true);
+        register.setVisible(false);
+        cercador.setVisible(false);
+        jpContingut.add(login);
     }
 
     public String getLogin() {
@@ -115,6 +134,15 @@ public class FinestraPrincipal extends JFrame{
 
     public String getPassword() {
         return login.getPassword();
+    }
+
+    public String getNewLogin() {
+        return register.getNewLogin();
+    }
+
+
+    public String getNewPassword() {
+        return register.getNewPassword();
     }
 
     public String getJtfMovTitle () {
