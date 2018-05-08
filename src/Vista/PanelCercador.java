@@ -1,14 +1,34 @@
 package Vista;
 
+import Controlador.ListenerBotons;
+
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
 /**
- * Created by xavierromacastells on 30/4/18.
+ *
+ * <p>
+ * Pràctica 2 [BBDD] <br/>
+ * LsMovie - El buscador definitiu <br/>
+ *
+ * <b> Classe: PanelCercador </b> <br/>
+ * Implementa un JPanel per realitzar la cerca
+ * </p>
+ *
+ * @version 1.0
+ * @author  Clàudia Peiró - cpeiro@salleurl.edu <br/>
+ * 			Xavier Roma - xroma@salleurl.edu <br/>
+ * 			Arxius i Bases de Dades <br/>
+ * 			La Salle - Universitat Ramon Llull. <br/>
+ * 			<a href="http://www.salle.url.edu" target="_blank">www.salle.url.edu</a>
+ *
  */
 public class PanelCercador extends JPanel {
+
+    public final static String SEARCH = "1";
+    public final static int MAX_RESULTS = 10;
 
     public final static String[] COLUMN_NAMES = {"Movie title",
             "Genre",
@@ -25,11 +45,14 @@ public class PanelCercador extends JPanel {
     private JTable jtResultats;
     private DefaultTableModel dtmResultats;
 
+    private JComboBox jcbOrderWhat;
+    private JComboBox jcbOrderHow;
+
     public PanelCercador () {
         JPanel jpMain = new JPanel();
         jpMain.setLayout(new BorderLayout());
 
-        JPanel jpCenter = new JPanel(new GridLayout(6,2));
+        JPanel jpCenter = new JPanel(new GridLayout(7,2));
         jtfMovTitle = new JTextField();
         jtfMovTitle.setPreferredSize(new Dimension(200,5));
         jtfGenre = new JTextField();
@@ -41,6 +64,11 @@ public class PanelCercador extends JPanel {
         jtfCountry = new JTextField();
         jtfCountry.setPreferredSize(new Dimension(200,5));
         jbSearch = new JButton("Search");
+        jcbOrderWhat = new JComboBox(COLUMN_NAMES);
+        jcbOrderHow = new JComboBox(new String[]{"ASC", "DESC"});
+        JPanel jpOrder = new JPanel();
+        jpOrder.add(jcbOrderWhat);
+        jpOrder.add(jcbOrderHow);
 
         jpCenter.add(new JLabel("Movie title: "));
         jpCenter.add(jtfMovTitle);
@@ -52,10 +80,12 @@ public class PanelCercador extends JPanel {
         jpCenter.add(jtfDirector);
         jpCenter.add(new JLabel("Country: "));
         jpCenter.add(jtfCountry);
+        jpCenter.add(new JLabel("Order by: "));
+        jpCenter.add(jpOrder);
         jpCenter.add(new JPanel());
         jpCenter.add(jbSearch);
 
-        dtmResultats = new DefaultTableModel(COLUMN_NAMES, 10) {
+        dtmResultats = new DefaultTableModel(COLUMN_NAMES, MAX_RESULTS) {
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false;
@@ -87,6 +117,11 @@ public class PanelCercador extends JPanel {
 
     }
 
+    public void registreControladorBotons(ListenerBotons controladorBotons) {
+
+        jbSearch.addActionListener(controladorBotons);
+        jbSearch.setActionCommand(SEARCH);
+    }
 
     public String getJtfMovTitle () {
         return jtfMovTitle.getText();
@@ -108,15 +143,28 @@ public class PanelCercador extends JPanel {
         return jtfCountry.getText();
     }
 
+    public String getOrderWhat(){
+        return COLUMN_NAMES[jcbOrderWhat.getSelectedIndex()];
+    }
+    public String getOrderHow(){
+        return (String)jcbOrderHow.getSelectedItem();
+    }
+
     public void clearFields () {
         jtfActor.setText("");
         jtfCountry.setText("");
         jtfDirector.setText("");
         jtfGenre.setText("");
         jtfMovTitle.setText("");
+        jcbOrderHow.setSelectedIndex(0);
+        jcbOrderWhat.setSelectedIndex(0);
+        for ( int i = 0; i < MAX_RESULTS; i++ ){
+            addResultsRow(new String[]{});
+        }
     }
 
     public void addResultsRow (String [] row) {
-        dtmResultats.addRow(row);
+        dtmResultats.insertRow(0,row);
+        dtmResultats.removeRow(MAX_RESULTS);
     }
 }

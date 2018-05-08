@@ -12,8 +12,8 @@ import com.sun.org.apache.regexp.internal.RE;
  * Pràctica 2 [BBDD] <br/>
  * LsMovie - El buscador definitiu <br/>
  * 
- * <b> Classe: FinestraLogin </b> <br/>
- * Implementa una finestra per realitzar login
+ * <b> Classe: PanelLogin </b> <br/>
+ * Implementa un JPanel per realitzar login
  * </p>
  *
  * @version 1.0
@@ -24,10 +24,9 @@ import com.sun.org.apache.regexp.internal.RE;
  * 			<a href="http://www.salle.url.edu" target="_blank">www.salle.url.edu</a>
  *
  */
-public class FinestraLogin extends JPanel {
+public class PanelLogin extends JPanel {
 
-	public final static String REGISTRAR = "1";
-	public final static String LOGIN = "2";
+	public final static String LOGIN = "0";
 
 	private JPanel jpMain;
 
@@ -37,7 +36,7 @@ public class FinestraLogin extends JPanel {
 	private JLabel jlPass;
 	private JPasswordField jpfPass;
 	
-	public FinestraLogin () {
+	public PanelLogin () {
 
 		jpMain = new JPanel();
 		jpMain.setLayout(new GridLayout(3,3));
@@ -75,7 +74,7 @@ public class FinestraLogin extends JPanel {
 	}
 
 	public String getPassword() {
-		return jpfPass.getPassword().toString();
+		return new String(jpfPass.getPassword());
 	}
 	
 }
